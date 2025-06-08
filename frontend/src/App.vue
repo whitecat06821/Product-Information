@@ -2,63 +2,40 @@
 import { RouterView } from 'vue-router'
 import NavBar from './components/NavBar.vue'
 import AppFooter from './components/AppFooter.vue'
+import { ref, onMounted, watch } from 'vue'
+
+const theme = ref(localStorage.getItem('theme') || 'light')
+
+const toggleTheme = () => {
+  theme.value = theme.value === 'light' ? 'dark' : 'light'
+}
+
+watch(theme, (newTheme) => {
+  document.documentElement.classList.toggle('dark', newTheme === 'dark')
+  localStorage.setItem('theme', newTheme)
+})
+
+onMounted(() => {
+  document.documentElement.classList.toggle('dark', theme.value === 'dark')
+})
 </script>
+
 <template>
-  <nav-bar />
+  <nav-bar @toggle-theme="toggleTheme" :current-theme="theme" />
   <RouterView />
   <app-footer />
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+<style>
+/* Global styles for theme transitions */
+html.dark {
+  /* Add global dark mode styles here if needed */
+  background-color: #1a202c; /* Example dark background */
+  color: #e2e8f0; /* Example dark text color */
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: @apply text-sea-buckthorn-800;
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-  }
+/* Base styles to ensure smooth transitions */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 </style>

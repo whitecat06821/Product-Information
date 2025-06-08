@@ -1,14 +1,18 @@
 <template>
-  <div class="flex flex-col items-center gap-4 self-center">
+  <div class="flex flex-col items-center gap-4 self-center w-full px-4">
     <image-section :url="selectedImage" v-if="selectedImage" />
-    <div class="image-placeholder border-gray-300 border border-dashed text-gray-300 flex flex-col items-center justify-center rounded-md px-4" v-else>
-      <span class="i-mingcute-pic-line text-4xl" aria-hidden="true" />
-      <p>{{ $t('upload.imagePlaceholder') }}</p>
+    <div
+      class="image-placeholder border-2 border-dashed rounded-lg flex flex-col items-center justify-center p-6 text-gray-400 dark:border-gray-600 dark:text-gray-500 bg-gray-50 dark:bg-gray-700 transition-colors duration-300"
+      :class="{'border-sea-buckthorn-500': selectedImage}"
+      v-else
+    >
+      <span class="i-mingcute-pic-line text-5xl mb-2" aria-hidden="true" />
+      <p class="text-center text-sm">{{ $t('upload.imagePlaceholder') }}</p>
     </div>
-    <button 
-      class="rounded px-5 py-2 text-white relative mb-3 lg:w-auto flex justify-center gap-2 items-center"
+    <button
+      class="mt-4 rounded-md px-6 py-3 text-white font-semibold relative w-full lg:w-auto flex justify-center gap-2 items-center transition-all duration-300 transform hover:scale-105"
       :disabled="isLoading"
-      :class="isLoading ? 'cursor-not-allowed bg-sea-buckthorn-300' : 'cursor-pointer bg-sea-buckthorn-600'"
+      :class="isLoading ? 'cursor-not-allowed bg-sea-buckthorn-300 dark:bg-sea-buckthorn-700' : 'cursor-pointer bg-sea-buckthorn-600 hover:bg-sea-buckthorn-700 dark:bg-sea-buckthorn-500 dark:hover:bg-sea-buckthorn-600'"
       >
       <span class="i-mingcute-upload-2-line" aria-hidden="true" />
       {{isLoading ? $t('upload.isUploading') : $t('upload.label')}}
@@ -31,7 +35,7 @@ import { useConfigurations } from '@/composables/useConfigurations';
 
 const emits = defineEmits(['upload_status'])
 
-const selectedImage = ref(null);
+const selectedImage = ref<string | null>(null);
 const isLoading = ref(false);
 const { setFile } = useConfigurations();
 
@@ -46,9 +50,9 @@ const selectFile = async (e: Event) => {
     isLoading: isLoading.value,
   });
 
-  const readData = () => new Promise(resolve => {
+  const readData = () => new Promise<string>(resolve => {
     const reader = new FileReader();
-    reader.onloadend = () => resolve(reader.result)
+    reader.onloadend = () => resolve(reader.result as string)
     reader.readAsDataURL(file);
   })
 
@@ -67,9 +71,11 @@ const selectFile = async (e: Event) => {
   }
 }
 </script>
-<style scoped>
+<style>
 .image-placeholder {
   height: 350px;
   width: 350px;
+  min-height: 200px; /* Ensure a minimum height */
+  min-width: 200px; /* Ensure a minimum width */
 }
 </style>

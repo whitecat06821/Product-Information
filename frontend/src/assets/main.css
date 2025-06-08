@@ -3,7 +3,11 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #app {
+html {
+  @apply bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300;
+}
+
+body {
   height: 100%;
 }
 
@@ -13,6 +17,7 @@ html, body, #app {
   padding: 0 2rem;
   font-weight: normal;
   width:100%;
+  min-height: 100vh; /* Ensure app takes full viewport height */
   display: flex;
   flex-direction: column;
   justify-content: space-between;

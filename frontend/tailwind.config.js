@@ -1,8 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 const { iconsPlugin, getIconCollections } = require("@egoist/tailwindcss-icons")
 
-export default {
-  content: [],
+module.exports = {
+  darkMode: 'class',
+  content: [
+    './index.html',
+    './src/**/*.{vue,js,ts,jsx,tsx}',
+  ],
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     extend: {
@@ -19,6 +23,23 @@ export default {
           800: '#6E4A10',
           900: '#49310B',
         },
+        gray: {
+          50:  '#f9fafb',
+          100: '#f3f4f6',
+          200: '#e5e7eb',
+          300: '#d1d5db',
+          400: '#9ca3af',
+          500: '#6b7280',
+          600: '#4b5563',
+          700: '#374151',
+          800: '#1f2937',
+          900: '#111827',
+          950: '#0a0d14',
+        },
+      },
+      boxShadow: {
+        'custom': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        'custom-dark': '0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.25)',
       },
       width: {
         box: '500px'

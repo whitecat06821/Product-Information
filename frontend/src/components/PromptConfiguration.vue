@@ -1,31 +1,31 @@
 <template>
-  <div class="mt-2 flex flex-col gap-4">
+  <div class="mt-2 flex flex-col gap-6">
     <div>
-      <label 
-        for="prompt-textarea" 
-        class="block text-md font-medium text-gray-700 mb-2">
+      <label
+        for="prompt-textarea"
+        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
         {{$t("configurations.prompt")}}
       </label>
-      <textarea 
-        class="rounded-md p-2 border w-full" 
-        type="text" 
+      <textarea
+        class="rounded-md p-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 w-full focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
+        type="text"
         id="prompt-textarea"
-        :placeholder="$t('configurations.promptPlaceholder')" 
-        rows="2" maxlength="120"
+        :placeholder="$t('configurations.promptPlaceholder')"
+        rows="3" maxlength="120"
         v-model="configurations.prompt"
       />
-      <span class="text-xs text-gray-500">
+      <span class="text-xs text-gray-500 dark:text-gray-400 mt-1">
         {{$t("configurations.promptHint")}}
       </span>
     </div>
     <div>
-      <label 
-        for="prompt-language" 
-        class="block text-md font-medium text-gray-700 mb-2">
+      <label
+        for="prompt-language"
+        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
         {{$t("configurations.language")}}
       </label>
-      <div class="grid grid-cols-3 gap-3">
-        <radio-btn 
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <radio-btn
           v-for="lang in languages"
           :key="lang.label"
           :label="lang.label"
@@ -35,13 +35,13 @@
       </div>
     </div>
     <div>
-      <label 
-        for="prompt-language" 
-        class="block text-md font-medium text-gray-700 mb-2">
+      <label
+        for="prompt-language"
+        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 {{$t("configurations.tone")}}
       </label>
-      <div class="grid grid-cols-3 gap-3">
-        <radio-btn 
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <radio-btn
           v-for="tone in tones"
           :key="tone.value"
           :label="tone.label"
@@ -51,11 +51,11 @@
       </div>
     </div>
   </div>
-  <button 
-    class="rounded px-5 py-2 my-4 text-white self-center flex justify-center items-center gap-2"
+  <button
+    class="mt-6 rounded-md px-6 py-3 text-white font-semibold self-center flex justify-center items-center gap-2 transition-all duration-300 transform hover:scale-105 w-full"
     @click="generateProductInfo"
-    :disabled="!configurations.file"
-    :class="!configurations.file || isLoading ? 'bg-gray-400' : 'bg-sea-buckthorn-600'"
+    :disabled="!configurations.file || isLoading"
+    :class="!configurations.file || isLoading ? 'bg-gray-400 dark:bg-gray-700 cursor-not-allowed' : 'bg-sea-buckthorn-600 hover:bg-sea-buckthorn-700 dark:bg-sea-buckthorn-500 dark:hover:bg-sea-buckthorn-600'"
   >
     <span class="i-mingcute-box-3-line" aria-hidden="true" />
     {{isLoading ? $t("isGenerating") : $t("generate")}}
@@ -67,6 +67,7 @@ import RadioBtn from '@/components/RadioBtn.vue';
 import { useGenerate } from '@/composables/useGenerate';
 import { useConfigurations } from '@/composables/useConfigurations';
 import { useI18n } from 'vue-i18n';
+import type { Product } from '@/types/Product';
 
 const { generate, isLoading, isError } = useGenerate();
 const { configurations } = useConfigurations();
@@ -101,7 +102,7 @@ const generateProductInfo = () => {
     isError
   })
 
-  generate(generatedResponse => {
+  generate((generatedResponse: { isLoading: boolean; isError: boolean; data: Product | null }) => {
     emits('generate_status', generatedResponse)
   })
 }
