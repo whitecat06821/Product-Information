@@ -5,7 +5,7 @@
     "description": "This AI tool leverages different LLM services to generate product information from a given image. Simply upload an image of a product and the model will generate a title, description, and tags for the product. You can also customize the generated information by providing a custom prompt, target language, and target tone.",
     "disclaimer": "Disclaimer: This tool is for demonstration purposes only and may not always generate accurate results. The quality of the generated content depends on the input image and the model's training data.",
     "subDescription": "The first version allows user to generate and copy the product information in JSON format. Future versions will include more customization options, additional output formats and other E-commerce direct integrations.",
-    "author": "Created by Maya Shavin.",
+    "author": "Created by Ren.",
     "technologies": "Technologies used:",
     "frontend": "Frontend",
     "backend": "Backend",
