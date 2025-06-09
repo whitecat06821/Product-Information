@@ -44,15 +44,15 @@ watch(() => configurationRef.value?.isLoading, (newVal) => {
 </script>
 <template>
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 bg-gray-50 dark:bg-gray-900 transition-colors duration-300 h-full w-full p-4 lg:p-8">
-    <div class="flex flex-col items-center justify-center bg-white dark:bg-gray-800 rounded-lg shadow-xl h-full overflow-y-auto">
+    <div class="flex flex-col items-center justify-center bg-white dark:bg-gray-800 rounded-lg shadow-xl h-full overflow-y-auto p-4 lg:p-8">
       <div class="flex flex-col w-full h-full">
-        <div class="flex flex-col lg:flex-row items-start gap-4 w-full h-full p-4 lg:p-8">
+        <div class="flex flex-col lg:flex-row items-center gap-4 w-full h-full">
           <upload-image ref="uploadImageRef" class="flex-grow" @file_selected="handleFileSelected" />
           <div class="w-full max-w-md">
             <configuration ref="configurationRef" @generate_status="updateStatus" />
           </div>
         </div>
-        <div class="flex flex-col lg:flex-row gap-4 mt-6 w-full justify-center lg:justify-start">
+        <div class="flex flex-col lg:flex-row gap-4 mt-6 w-full justify-center pb-4">
           <button
             class="rounded-md px-6 py-3 text-white font-semibold relative flex justify-center gap-2 items-center transition-all duration-300 transform hover:scale-105 w-full lg:w-auto"
             @click="triggerFileInput"
