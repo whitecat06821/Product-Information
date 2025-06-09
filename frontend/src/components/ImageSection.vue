@@ -16,8 +16,8 @@ const props = defineProps({
 </script>
 <style scoped>
 .image-wrapper {
-  width: 350px;
-  height: 350px;
+  max-width: 100%;
+  height: auto;
   object-fit: cover;
 }
 </style>

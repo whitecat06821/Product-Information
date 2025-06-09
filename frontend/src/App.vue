@@ -22,7 +22,9 @@ onMounted(() => {
 
 <template>
   <nav-bar @toggle-theme="toggleTheme" :current-theme="theme" />
-  <RouterView />
+  <main class="flex-grow flex flex-col">
+    <RouterView class="flex-grow h-full" />
+  </main>
   <app-footer />
 </template>
 

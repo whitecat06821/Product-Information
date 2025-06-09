@@ -73,9 +73,8 @@ const selectFile = async (e: Event) => {
 </script>
 <style>
 .image-placeholder {
-  height: 350px;
-  width: 350px;
-  min-height: 200px; /* Ensure a minimum height */
-  min-width: 200px; /* Ensure a minimum width */
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 </style>

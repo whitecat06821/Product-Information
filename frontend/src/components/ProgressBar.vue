@@ -1,9 +1,9 @@
 <template>
-  <div class='progress-bar-container'>
-    <div :class='`h-1.5 w-full bg-${color}-100 overflow-hidden`'>
-      <div :class='`progress w-full h-full bg-${color}-500 left-right`'/>
+  <div class='flex flex-col items-center gap-2 w-full max-w-xs'>
+    <div :class="`h-2 w-full rounded-full bg-${color}-100 dark:bg-${color}-900 overflow-hidden`">
+      <div :class="`progress h-full bg-${color}-500 dark:bg-${color}-400 left-right rounded-full`"/>
     </div>
-    <span v-if="label" :class="`text-${labelColor} text-sm`">{{ label }}</span>
+    <span v-if="label" :class="`text-${labelColor} dark:text-gray-300 text-sm font-medium`">{{ label }}</span>
   </div>
 </template>
 <script setup lang="ts">
@@ -23,10 +23,7 @@ const props = defineProps({
   }
 });
 </script>
-<style scoped>
-.progress-bar-container {
-  width: 200px;
-}
+<style>
 .progress {
   animation: progress 1s infinite linear;
 }

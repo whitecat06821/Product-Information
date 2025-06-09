@@ -1,8 +1,8 @@
 <template>
-  <div class="flex flex-col gap-6 lg:gap-10 p-6 lg:p-10 min-h-[calc(100vh-80px)] bg-white dark:bg-gray-800 rounded-lg shadow-custom dark:shadow-custom-dark transition-colors duration-300">
+  <div class="flex flex-col gap-6 lg:gap-10 h-full bg-white dark:bg-gray-800 rounded-lg shadow-custom dark:shadow-custom-dark transition-colors duration-300 p-6 lg:p-10">
     <div class="flex flex-col gap-4">
       <h1 class="text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-gray-100">{{ $t('about.title') }}</h1>
-      <divider />
+      <app-divider />
       <div class="flex flex-col gap-3 text-gray-700 dark:text-gray-300">
         <p>{{ $t('about.description') }}</p>
         <p>{{ $t('about.subDescription') }}</p>
@@ -12,7 +12,7 @@
     <div class="flex flex-col sm:flex-row gap-6 sm:gap-10">
       <div class="flex flex-col gap-3 w-full">
         <h2 class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-gray-100">{{ $t('about.technologies') }}</h2>
-        <divider />
+        <app-divider />
         <div class="flex flex-col sm:flex-row gap-6 sm:gap-12 text-gray-700 dark:text-gray-300">
           <div class="flex flex-col gap-2">
             <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ $t('about.frontend') }}</h3>
@@ -32,5 +32,5 @@
   </div>
 </template>
 <script setup lang="ts">
-import Divider from '@/components/Divider.vue';
+import AppDivider from '@/components/AppDivider.vue';
 </script>
