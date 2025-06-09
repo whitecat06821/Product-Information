@@ -22,8 +22,8 @@ onMounted(() => {
 
 <template>
   <nav-bar @toggle-theme="toggleTheme" :current-theme="theme" />
-  <main class="flex-grow flex flex-col">
-    <RouterView class="flex-grow h-full" />
+  <main class="flex-grow flex flex-col overflow-y-auto">
+    <RouterView class="w-full h-full" />
   </main>
   <app-footer />
 </template>

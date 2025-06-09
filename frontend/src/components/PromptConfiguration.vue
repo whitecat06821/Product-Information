@@ -51,18 +51,9 @@
       </div>
     </div>
   </div>
-  <button
-    class="mt-6 rounded-md px-6 py-3 text-white font-semibold self-center flex justify-center items-center gap-2 transition-all duration-300 transform hover:scale-105 w-full"
-    @click="generateProductInfo"
-    :disabled="!configurations.file || isLoading"
-    :class="!configurations.file || isLoading ? 'bg-gray-400 dark:bg-gray-700 cursor-not-allowed' : 'bg-sea-buckthorn-600 hover:bg-sea-buckthorn-700 dark:bg-sea-buckthorn-500 dark:hover:bg-sea-buckthorn-600'"
-  >
-    <span class="i-mingcute-box-3-line" aria-hidden="true" />
-    {{isLoading ? $t("isGenerating") : $t("generate")}}
-  </button>
 </template>
 <script setup lang="ts">
-import { defineEmits } from 'vue';
+import { defineEmits, defineExpose } from 'vue';
 import RadioBtn from '@/components/RadioBtn.vue';
 import { useGenerate } from '@/composables/useGenerate';
 import { useConfigurations } from '@/composables/useConfigurations';
@@ -106,4 +97,9 @@ const generateProductInfo = () => {
     emits('generate_status', generatedResponse)
   })
 }
+
+defineExpose({
+  generateProductInfo,
+  isLoading
+})
 </script>

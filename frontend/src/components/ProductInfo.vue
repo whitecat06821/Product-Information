@@ -1,12 +1,12 @@
 <template>
-  <div v-if="!product || isLoading || isError"
+  <div v-if="!product || isLoading || isError" 
     class="flex flex-col items-center justify-center border-2 border-dashed rounded-lg p-6 text-gray-400 dark:border-gray-600 dark:text-gray-500 bg-gray-50 dark:bg-gray-700 transition-colors duration-300 h-full"
   >
     <progress-bar v-if="isLoading" :label="$t('isGenerating')" />
     <p v-else-if="isError" class="text-center">{{$t("productInfo.error")}}</p>
     <p v-else class="text-center">{{ $t('productInfo.placeholder')}}</p>
   </div>
-  <div
+  <div 
     class="flex flex-col border border-gray-200 dark:border-gray-700 rounded-lg p-6 gap-6 h-full bg-white dark:bg-gray-800 transition-colors duration-300 overflow-auto"
     v-else
   >

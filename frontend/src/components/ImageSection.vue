@@ -1,7 +1,7 @@
 <template>
   <picture class="flex items-center">
     <source :srcset="url" media="(min-width:0px)">
-    <img :src="url" alt="uploaded photo for product generation" class="rounded-md self-align sm:w-box image-wrapper"/>
+    <img :src="url" alt="uploaded photo for product generation" class="rounded-md self-align w-full h-full object-cover"/>
   </picture>
 </template>
 <script lang="ts" setup>
@@ -15,9 +15,5 @@ const props = defineProps({
 });
 </script>
 <style scoped>
-.image-wrapper {
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
-}
+/* Removed .image-wrapper styles as they are now applied directly to the img tag */
 </style>
